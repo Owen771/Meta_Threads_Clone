@@ -16,12 +16,22 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Auth
 
-- Using a 3rd party - Clerk
+- Clerk: a 3rd party provided auth component (login with Github, Google, Email etc.) 
 
 
 ### Layout
 
 - Added topbar
 
-- Sidebar for nav to various page (LeftSidebar for web, BottomBar for mobile / tablet)
-    - how come only one is showing (BottomBar wont show when LeftSidebar showed, vice versa)
+- Sidebar for nav to various page 
+    - Topbar
+    - Left Sidebar for web, BottomBar for mobile / tablet
+        - How come always one of them is showing (i.e BottomBar wont show when LeftSidebar showed, vice versa)
+    - Right sidebar
+
+
+### Onboarding 
+
+- [shadcn/ui](https://ui.shadcn.com/docs/components/form): a 3rd party that provided component
+    - Generated all codes on /components/ui/
+- [Zod](https://zod.dev/): TypeScript-first schema validation with static type inference (no idea what this for)
