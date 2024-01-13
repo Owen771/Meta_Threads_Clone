@@ -14,6 +14,8 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+Note: tailwind.config.js, globals.css are provided by the course
+
 ### Auth
 
 - Clerk: a 3rd party provided auth component (login with Github, Google, Email etc.) 
@@ -24,10 +26,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Added topbar
 
 - Sidebar for nav to various page 
-    - Topbar
+    - Topbar (Logo, Your account)
     - Left Sidebar for web, BottomBar for mobile / tablet
         - How come always one of them is showing (i.e BottomBar wont show when LeftSidebar showed, vice versa)
-    - Right sidebar
+    - Right sidebar (Suggested communities, Suggested users)
 
 
 ### Onboarding 

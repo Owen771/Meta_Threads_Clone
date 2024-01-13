@@ -1,5 +1,6 @@
 import * as z from 'zod';
 
+// Form Schema
 export const UserValidation = z.object({
     // Ensure profile_photo is string, and url type, and non empty
     profile_photo: z.string().url().nonempty(),
