@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserValidation } from "@/lib/validations/user";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { Textarea } from "../ui/textarea";
 import {
   Form,
@@ -19,7 +19,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-
+import { isBase64Image } from '@/lib/utils';
+import { useUploadThing } from '@/lib/uploadthing';
 
 interface Props {
     user: {
@@ -34,6 +35,9 @@ interface Props {
 }
 
 const AccountProfile = ( {user, btnTitle} : Props ) => {
+    const [files, setFiles] = useState<File[]>([])
+    const { startUpload } = useUploadThing("media");
+
     // Define the form (with useForm() and zodResolver)
     const form = useForm({
         resolver: zodResolver(UserValidation),
@@ -45,15 +49,46 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
         }
     })
 
-    const handleImage = (e : ChangeEvent, fieldChange: (value: string) => void) => {
+    // The handler after user uploaded a new image for their profile photo
+    const handleImage = (e : ChangeEvent<HTMLInputElement>, 
+                        fieldChange: (value: string) => void) => {
         e.preventDefault();
+
+        const fileReader = new FileReader();
+        if (e.target.files && e.target.files.length > 0) {
+            const file = e.target.files[0]; 
+            
+            setFiles(Array.from(e.target.files));
+
+            if (!file.type.includes('image')) return;
+
+            fileReader.onload = async (event) => {
+                const imageDataUrl = event.target?.result?.toString() || '';
+
+                fieldChange(imageDataUrl); 
+            }
+
+            fileReader.readAsDataURL(file);
+        }
+
     }
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof UserValidation>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+    // It's gonna re-upload the new image and update the user in our mongoDB
+    const onSubmit = async (values: z.infer<typeof UserValidation>) => {
+        const blob = values.profile_photo; // value of an image called blob
+
+        const hasImageChanged = isBase64Image(blob);
+
+        if (hasImageChanged) {
+            const imgRes = await startUpload(files);
+
+            if (imgRes && imgRes[0].fileUrl) {
+                values.profile_photo = imgRes[0].fileUrl;
+            }
+        }
+
+        // TODO: Update user profile
     }
     
     return (

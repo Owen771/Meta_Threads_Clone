@@ -37,3 +37,7 @@ Note: tailwind.config.js, globals.css are provided by the course
 - [shadcn/ui](https://ui.shadcn.com/docs/components/form): a 3rd party that provided component
     - Generated all codes on /components/ui/
 - [Zod](https://zod.dev/): TypeScript-first schema validation with static type inference (no idea what this for)
+- Onboarding page (a form) frontend done
+
+### Backend
+
