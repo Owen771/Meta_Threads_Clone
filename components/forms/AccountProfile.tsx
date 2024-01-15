@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/form"
 import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadthing';
+import { updateUser } from '@/lib/actions/user.actions';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface Props {
     user: {
@@ -37,6 +39,8 @@ interface Props {
 const AccountProfile = ( {user, btnTitle} : Props ) => {
     const [files, setFiles] = useState<File[]>([])
     const { startUpload } = useUploadThing("media");
+    const router = useRouter(); 
+    const pathname = usePathname();
 
     // Define the form (with useForm() and zodResolver)
     const form = useForm({
@@ -73,22 +77,44 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
 
     }
 
-    // 2. Define a submit handler.
-    // It's gonna re-upload the new image and update the user in our mongoDB
+    // 2. Define a submit handler, which is gonna re-upload the new image and 
+    //    update the user in our mongoDB
     const onSubmit = async (values: z.infer<typeof UserValidation>) => {
+
         const blob = values.profile_photo; // value of an image called blob
 
+        console.log("b1");
+
         const hasImageChanged = isBase64Image(blob);
-
+        console.log("b2");
         if (hasImageChanged) {
+            console.log("b3");
             const imgRes = await startUpload(files);
-
+            
+            console.log("DBG");
+            // console.log(imgRes[0].fileUrl);
             if (imgRes && imgRes[0].fileUrl) {
                 values.profile_photo = imgRes[0].fileUrl;
             }
         }
 
-        // TODO: Update user profile
+        console.log("b4");
+
+        await updateUser({
+            userId: user.id,
+            username: values.username,
+            name: values.name,
+            bio: values.bio,
+            image: values.profile_photo,
+            path: pathname
+        });
+
+        console.log("DBG: " + pathname);
+        if (pathname === '/profile/edit') {
+            router.back();
+        } else {
+            router.push('/');
+        }
     }
     
     return (
