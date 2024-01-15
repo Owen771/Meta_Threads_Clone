@@ -1,3 +1,4 @@
+// Operation/func related to user
 "use server"
 
 import { revalidatePath } from 'next/cache';
@@ -13,6 +14,7 @@ interface Params {
     path: string, 
 }
 
+// Note: is there a way to avoid calling connectToDB() on every method?
 export async function updateUser({
     userId,
     username,
@@ -37,12 +39,28 @@ export async function updateUser({
         );
 
         if (path == '/profile/edit') {
-            // revalidate data assoicated with a specific path
-            // useful where u wanna update the cached data without waiting for a revalidation period to expire
+            // Make sure the change happen immediately
+            //   - revalidate data assoicated with a specific path, useful where u wanna update 
+            //      the cached data without waiting for a revalidation period to expire
             revalidatePath(path)
-
         }
-    } catch (error : any) {
+    } catch (error: any) {
         throw new Error(`Failed to create/update user: ${error.message}`)
+    }
+}
+
+export async function fetchUser(userId : string) {
+    try {
+        connectToDB();
+
+        return await User
+            .findOne({ id: userId })
+            // .populate({
+            //     path: 'communities',
+            //     model: Community
+            // })
+
+    } catch (error: any) {
+        throw new Error(`Failed to fetch user: ${error.message}`)
     }
 }

@@ -38,6 +38,9 @@ Note: tailwind.config.js, globals.css are provided by the course
     - Generated all codes on /components/ui/
 - [Zod](https://zod.dev/): TypeScript-first schema validation with static type inference (no idea what this for)
 - Onboarding page (a form) frontend done
+- Onboarding page (a form) backend done (uploadthing api + mongoDB)
 
-### Backend
+### Thread post
+
+- A textarea for user to create thread post
 

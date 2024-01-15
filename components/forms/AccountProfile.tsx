@@ -9,16 +9,8 @@ import { UserValidation } from "@/lib/validations/user";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ChangeEvent, useState } from "react";
-import { Textarea } from "../ui/textarea";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { Textarea } from "@/components/ui/textarea";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadthing';
 import { updateUser } from '@/lib/actions/user.actions';
@@ -79,26 +71,18 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
 
     // 2. Define a submit handler, which is gonna re-upload the new image and 
     //    update the user in our mongoDB
+    // values: the data from the form
     const onSubmit = async (values: z.infer<typeof UserValidation>) => {
-
         const blob = values.profile_photo; // value of an image called blob
 
-        console.log("b1");
-
         const hasImageChanged = isBase64Image(blob);
-        console.log("b2");
         if (hasImageChanged) {
-            console.log("b3");
             const imgRes = await startUpload(files);
             
-            console.log("DBG");
-            // console.log(imgRes[0].fileUrl);
             if (imgRes && imgRes[0].fileUrl) {
                 values.profile_photo = imgRes[0].fileUrl;
             }
         }
-
-        console.log("b4");
 
         await updateUser({
             userId: user.id,
@@ -109,7 +93,6 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
             path: pathname
         });
 
-        console.log("DBG: " + pathname);
         if (pathname === '/profile/edit') {
             router.back();
         } else {
@@ -120,8 +103,8 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
     return (
         <Form {...form}>
             <form 
-            onSubmit={form.handleSubmit(onSubmit)} 
-            className="flex flex-col justify-start gap-10"
+                onSubmit={form.handleSubmit(onSubmit)} 
+                className="flex flex-col justify-start gap-10"
             >
                 <FormField
                 control={form.control}
@@ -157,6 +140,7 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
                             onChange={(e) => handleImage(e, field.onChange)}
                         />
                     </FormControl>
+                    <FormMessage />
                     </FormItem>
                 )}
                 />
@@ -176,6 +160,7 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
                                 {...field}
                             />
                         </FormControl>
+                        <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -195,6 +180,7 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
                                 {...field}
                             />
                         </FormControl>
+                        <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -214,6 +200,7 @@ const AccountProfile = ( {user, btnTitle} : Props ) => {
                                 {...field}
                             />
                         </FormControl>
+                        <FormMessage />
                         </FormItem>
                     )}
                 />
