@@ -40,7 +40,8 @@ Note: tailwind.config.js, globals.css are provided by the course
 - Onboarding page (a form) frontend done
 - Onboarding page (a form) backend done (uploadthing api + mongoDB)
 
-### Thread post
+### Thread (post)
 
 - A textarea for user to create thread post
+- Home page fetch thread
 
