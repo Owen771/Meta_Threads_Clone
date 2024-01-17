@@ -1,3 +1,4 @@
+// Whenever we're working with forms, will need "use client", cuz it's a browser event
 "use client"
 
 import * as z from 'zod';

@@ -45,3 +45,11 @@ Note: tailwind.config.js, globals.css are provided by the course
 - A textarea for user to create thread post
 - Home page fetch thread
 
+#### Thread detail page
+
+- Original post
+- other user can comment on original post
+- other user can comment on other comment
+
+![Alt text](doc_img/Thread_detail_page.png)
+
