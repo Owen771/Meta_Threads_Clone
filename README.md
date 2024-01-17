@@ -48,8 +48,13 @@ Note: tailwind.config.js, globals.css are provided by the course
 #### Thread detail page
 
 - Original post
-- other user can comment on original post
-- other user can comment on other comment
+- other user can put comment on original post
+- other user can put comment on other comment
 
 ![Alt text](doc_img/Thread_detail_page.png)
 
+### Profile
+
+- User can view its profile as well as others
+    - User profile
+    - Tabs
