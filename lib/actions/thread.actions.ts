@@ -29,8 +29,8 @@ export async function createThread({
     });
 
     // Update user model
-    await User.findByIdAndUpdate(author, {
-      $push: { threads: createThread._id },
+    const res = await User.findByIdAndUpdate(author, {
+      $push: { threads: createdThread._id },
     });
 
     revalidatePath(path);
@@ -132,7 +132,6 @@ export async function addCommentToThread(
     
     // save to DB
     const saveCommentThread = await commentThread.save();
-    console.log(saveCommentThread);
     originalThread.children.push(saveCommentThread._id);
 
     await originalThread.save();

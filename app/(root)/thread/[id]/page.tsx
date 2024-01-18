@@ -1,3 +1,5 @@
+// This is the page - {domain+port}/thread/{thread_id}
+
 import ThreadCard from "@/components/cards/ThreadCard";
 import Comment from "@/components/forms/Comment";
 import { fetchThreadById } from "@/lib/actions/thread.actions";
@@ -5,7 +7,6 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-// This is the page - {domain+port}/thread/{thread_id}
 const Page = async ({ params }: { params: { id: string } }) => {
   if (!params.id) return null;
 
@@ -62,7 +63,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
           />
         ))}
       </div>
-
     </section>
   )
 };

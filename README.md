@@ -1,36 +1,36 @@
 ## Getting Started
 
-First, run the development server:
-
+First, clone this project
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, run the development server:
+```bash
+npm run dev
+```
 
-Note: tailwind.config.js, globals.css are provided by the course
+Open [http://localhost:3000](http://localhost:3000) with your browser to see Threads!
+
+---
+
+Note to me
+- tailwind.config.js, globals.css are provided by the course
+- Should comment (as it's also a thread) be clean up once the original thread is deleted? (even tho now it does not have the delete functionality yet)
+- user2: pobije2430@ikuromi.com
 
 ### Auth
 
 - Clerk: a 3rd party provided auth component (login with Github, Google, Email etc.) 
 
-
 ### Layout
 
 - Added topbar
-
 - Sidebar for nav to various page 
     - Topbar (Logo, Your account)
     - Left Sidebar for web, BottomBar for mobile / tablet
         - How come always one of them is showing (i.e BottomBar wont show when LeftSidebar showed, vice versa)
     - Right sidebar (Suggested communities, Suggested users)
-
 
 ### Onboarding 
 
@@ -57,4 +57,6 @@ Note: tailwind.config.js, globals.css are provided by the course
 
 - User can view its profile as well as others
     - User profile
-    - Tabs
+    - Tabs (using shadcn-ui)
+    - If looking at your own profile, you can delete Threads you post
+
