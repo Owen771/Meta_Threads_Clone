@@ -51,7 +51,7 @@ Note to me
 - other user can put comment on original post
 - other user can put comment on other comment
 
-![Alt text](doc_img/Thread_detail_page.png)
+![Thread Detail Page](doc_img/Thread_detail_page.png)
 
 ### Profile
 
@@ -62,4 +62,24 @@ Note to me
 
 ### Search
 
-- xxx
+- Can see other users and view its profile
+
+
+### Activity
+
+- Like a notification tab, where allow you to see when somebody commented on your Thread
+
+
+### Community
+
+- There has many communities, and admin can give user access to it
+![Different Community](doc_img/Community_page.png)
+
+- Once you're the member community, you can read all of the community Threads
+![Community Home Page](doc_img/Community_detail_page.png)
+
+- Also can see the member list of the community
+
+Impl:
+- Reuse the profile page and ThreadCard
+- Community creation would be through Clerk, and use webhook to handle the action from it

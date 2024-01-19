@@ -1,35 +1,31 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const communitySchema = new mongoose.Schema({
     id: { type: String, required: true},
     username: { type: String, required: true, unique: true },
     name: { type: String, required: true},
     image: String,
     bio: String,
-    onboarded: {
-        type: Boolean,
-        default: false
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User' 
     },
-
-    // An user can have multiple ref to specific threads stored in DB
     threads: [
         {
             type: mongoose.Schema.Types.ObjectId, 
             ref: 'Thread'
         }
     ],
-
-    // An user can belong to many communities
-    communities: [
+    members: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Community'
+            ref: 'User'
         }
     ]
 });
 
 // For the first time, mongoose.models.User doesn't exist, 
 // so the second half is creating a model "User" in the DB
-const User = mongoose.models.User || mongoose.model('User', userSchema);
+const Community = mongoose.models.Community || mongoose.model('User', communitySchema);
 
-export default User;
+export default Community;
