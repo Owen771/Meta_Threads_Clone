@@ -57,6 +57,9 @@ Note to me
 
 - User can view its profile as well as others
     - User profile
-    - Tabs (using shadcn-ui)
-    - If looking at your own profile, you can delete Threads you post
+    - Using shadcn-ui to impl Tabs (Replies, Tagged not impl)
+    - If looking at your own profile, you can delete Threads you post (not impl yet)
 
+### Search
+
+- xxx
