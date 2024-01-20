@@ -7,7 +7,7 @@ export default async function Home() {
   const user = await currentUser();
 
   // DEBUG:
-  // console.log(result);
+  console.log(result);
   // {
   //   threads: [
   //     {

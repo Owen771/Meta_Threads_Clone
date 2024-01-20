@@ -26,6 +26,6 @@ const communitySchema = new mongoose.Schema({
 
 // For the first time, mongoose.models.User doesn't exist, 
 // so the second half is creating a model "User" in the DB
-const Community = mongoose.models.Community || mongoose.model('User', communitySchema);
+const Community = mongoose.models.Community || mongoose.model('Community', communitySchema);
 
 export default Community;
