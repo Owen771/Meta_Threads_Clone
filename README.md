@@ -19,11 +19,6 @@ Note to me
 - Should comment (as it's also a thread) be clean up once the original thread is deleted? (even tho now it does not have the delete functionality yet)
 - user2: pobije2430@ikuromi.com
 
-
-Known issue:
-
-- webhook cannot be delivered (resp code 500)
-
 TODO (not in the video, but in github - https://github.com/adrianhajdin/threads): 
 
 - Search bar in Search page & Communities page
