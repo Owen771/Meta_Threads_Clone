@@ -38,6 +38,7 @@ type Event = {
 
 export const POST = async (request: Request) => {
   const payload = await request.json();
+  console.log(payload)
   const header = headers();
 
   // heads for svix verification of webhooks
@@ -63,6 +64,7 @@ export const POST = async (request: Request) => {
   }
 
   const eventType: EventType = evnt?.type!;
+  console.log("Webhook Event Type: " , eventType)
 
   // Listen organization creation event
   if (eventType === "organization.created") {
@@ -99,7 +101,6 @@ export const POST = async (request: Request) => {
   if (eventType === "organizationInvitation.created") {
     try {
       // Resource: https://clerk.com/docs/reference/backend-api/tag/Organization-Invitations#operation/CreateOrganizationInvitation
-      console.log("Invitation created", evnt?.data);
 
       return NextResponse.json(
         { message: "Invitation created" },

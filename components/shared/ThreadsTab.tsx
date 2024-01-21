@@ -2,6 +2,7 @@ import { fetchUserPosts } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 
 import ThreadCard from "../cards/ThreadCard";
+import { fetchCommunityPosts } from "@/lib/actions/community.actions";
 
 interface Props {
   currentUserId: string; // the login user id
@@ -13,7 +14,15 @@ const ThreadsTab = async (
 { currentUserId, accountId, accountType }: Props
 ) => {
   // Fetch specific Threads that only belong to this specific user (or a specific community)
-  let result = await fetchUserPosts(accountId); 
+  let result: any;
+  console.log(accountId) 
+  
+  if (accountType === 'Community') {
+    result = await fetchCommunityPosts(accountId); 
+  } else {
+    result = await fetchUserPosts(accountId); 
+  }
+
   if (!result) redirect('/');
 
   return (

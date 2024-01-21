@@ -34,14 +34,9 @@ interface Params {
   path: string;
 }
 
-export async function updateUser({
-  userId,
-  bio,
-  name,
-  path,
-  username,
-  image,
-}: Params): Promise<void> {
+export async function updateUser(
+  { userId, bio, name, path, username, image }: Params): Promise<void> 
+{
   try {
     connectToDB();
 

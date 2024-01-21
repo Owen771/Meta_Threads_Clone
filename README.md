@@ -19,6 +19,18 @@ Note to me
 - Should comment (as it's also a thread) be clean up once the original thread is deleted? (even tho now it does not have the delete functionality yet)
 - user2: pobije2430@ikuromi.com
 
+
+Known issue:
+
+- webhook cannot be delivered (resp code 500)
+
+TODO (not in the video, but in github - https://github.com/adrianhajdin/threads): 
+
+- Search bar in Search page & Communities page
+![Alt text](doc_img/Search_bar.png)
+- Comment user icon and total replies
+![Alt text](doc_img/Comment_icon_reply_num.png)
+
 ### Auth
 
 - Clerk: a 3rd party provided auth component (login with Github, Google, Email etc.) 
@@ -86,7 +98,7 @@ Impl:
 - Need to add a webhook endpoint in Clerk
 
 - TO READ in order to save time, direct copy from the material: (https://gist.github.com/adrianhajdin/060e4c9d3d8d4274b7669e260dbbcc8e)
-    - [comm_1](app/api/webhook/clerk/route.ts), [comm_2](lib/models/community.model.ts), [comm_3](lib/actions/thread.actions.ts), [comm_4](lib/actions/user.actions.ts)
+    - [comm_1](app/api/webhook/clerk/route.ts), [comm_2](lib/models/community.model.ts), [comm_3](lib/actions/thread.actions.ts), [comm_4](lib/actions/user.actions.ts), [comm_5](components/cards/CommunityCard.tsx)
     - pretty much similiar other part, except it's driven by webhook
     - Qn: When webhook come in, how does app know to use route.ts? (based on file path? Yes)
 
